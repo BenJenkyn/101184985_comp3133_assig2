@@ -1,15 +1,19 @@
-.sign-in-box{
+.sign-in-text-box{
   width: 300px;
   margin: 8px;
 }
+
 .login-box{
   display:inline-block;
-  margin-top: 15%;
-  border-color: rgb(228, 224, 224);
-  border-style: solid;
+  margin-top: 10%;
+  background-color: rgb(245, 245, 245);
 }
 
 .mat-card-cover{
   width: 100%;
   text-align:center;
+}
+
+button{
+  width: 100px;
 }
