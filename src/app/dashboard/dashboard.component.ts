@@ -1,5 +1,6 @@
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 import { Observable}  from 'rxjs';

@@ -9,8 +9,7 @@ import gql from 'graphql-tag';
 })
 export class HotelsComponent implements OnInit {
   hotels: any[] = [];
-  loading = true;
-  test = false
+
   displayedColumns: string[] = [
     'hotel_name',
     'street',
@@ -21,7 +20,6 @@ export class HotelsComponent implements OnInit {
     'user_id',
     'add_booking',
   ];
-
   constructor(private apollo: Apollo) {}
 
   ngOnInit(): void {
@@ -29,7 +27,7 @@ export class HotelsComponent implements OnInit {
       .query<any>({
         query: gql`
           {
-            getHotel {
+            getHotels {
               hotel_name
               street
               city
@@ -41,18 +39,8 @@ export class HotelsComponent implements OnInit {
           }
         `,
       })
-      .subscribe(({ data, loading }) => {
-        this.hotels = data && data.getHotel;
-        this.loading = loading;
+      .subscribe(({ data}) => {
+        this.hotels = data && data.getHotels;
       });
-    console.log('test' + this.hotels);
-  }
-
-  getHotelName(hotelNames: any[]) {
-    if (hotelNames.length > 1) {
-      return hotelNames.reduce((acc, cur) => acc.name + ', ' + cur.name);
-    } else {
-      return hotelNames[0].name;
-    }
   }
 }

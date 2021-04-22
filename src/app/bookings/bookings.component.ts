@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatTableDataSource } from '@angular/material/table';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
@@ -10,7 +11,9 @@ import gql from 'graphql-tag';
 export class BookingsComponent implements OnInit {
   bookings: any[] = [];
   loading = true;
-  test = false;
+
+  dataSource = new MatTableDataSource(this.bookings)
+
   displayedColumns: string[] = [
     'hotel_id',
     'booking_date',
@@ -26,7 +29,7 @@ export class BookingsComponent implements OnInit {
       .query<any>({
         query: gql`
           {
-            getBooking {
+            getBookings {
               hotel_id
               booking_date
               booking_start
@@ -37,16 +40,8 @@ export class BookingsComponent implements OnInit {
         `,
       })
       .subscribe(({ data, loading }) => {
-        this.bookings = data && data.getBooking;
+        this.bookings = data && data.getBookings;
         this.loading = loading;
       });
-  }
-
-  getHotelName(getBooking: any[]) {
-    if (getBooking.length > 1) {
-      return getBooking.reduce((acc, cur) => acc.name + ', ' + cur.name);
-    } else {
-      return getBooking[0].name;
-    }
   }
 }

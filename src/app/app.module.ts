@@ -20,8 +20,9 @@ import { MatTableModule } from '@angular/material/table';
 import { HotelsComponent } from './hotels/hotels.component';
 import { BookingsComponent } from './bookings/bookings.component';
 import { MatToolbarModule } from '@angular/material/toolbar';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatListModule} from '@angular/material/list'
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { SignUpComponent } from './sign-up/sign-up.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import {MatListModule} from '@angular/material/list'
     DashboardComponent,
     HotelsComponent,
     BookingsComponent,
+    SignUpComponent,
   ],
   imports: [
     BrowserModule,
@@ -48,7 +50,7 @@ import {MatListModule} from '@angular/material/list'
     MatTableModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
   ],
   providers: [HotelServiceService],
   bootstrap: [AppComponent],
