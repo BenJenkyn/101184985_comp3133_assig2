@@ -14,14 +14,23 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDividerModule } from '@angular/material/divider';
 import { HttpClientModule } from '@angular/common/http';
 import { GraphQLModule } from './graphql.module';
-import { DashboardComponent } from './dashboard/dashboard.component'
+import { DashboardComponent } from './dashboard/dashboard.component';
 import { HotelServiceService } from './services/hotel-service.service';
-import {MatTableModule} from '@angular/material/table';
+import { MatTableModule } from '@angular/material/table';
 import { HotelsComponent } from './hotels/hotels.component';
 import { BookingsComponent } from './bookings/bookings.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatListModule} from '@angular/material/list'
 
 @NgModule({
-  declarations: [AppComponent, LogInComponent, DashboardComponent, HotelsComponent, BookingsComponent],
+  declarations: [
+    AppComponent,
+    LogInComponent,
+    DashboardComponent,
+    HotelsComponent,
+    BookingsComponent,
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -36,7 +45,10 @@ import { BookingsComponent } from './bookings/bookings.component';
     MatButtonModule,
     MatDividerModule,
     GraphQLModule,
-    MatTableModule
+    MatTableModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule
   ],
   providers: [HotelServiceService],
   bootstrap: [AppComponent],
