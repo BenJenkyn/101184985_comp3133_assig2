@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   title = "Hotels"
   sideList = 0
 
+
   constructor(private apollo: Apollo) {}
 
   ngOnInit(): void {

@@ -21,7 +21,6 @@ export class BookingsComponent implements OnInit {
     'booking_end',
     'user_id'
   ];
-
   constructor(private apollo: Apollo) {}
 
   ngOnInit(): void {
@@ -43,5 +42,10 @@ export class BookingsComponent implements OnInit {
         this.bookings = data && data.getBookings;
         this.loading = loading;
       });
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
