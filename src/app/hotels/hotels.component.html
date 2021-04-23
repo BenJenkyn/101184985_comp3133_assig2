@@ -38,7 +38,7 @@
   <ng-container matColumnDef="add_booking">
     <th mat-header-cell *matHeaderCellDef>Add Booking</th>
     <td mat-cell *matCellDef>
-      <button mat-raised-button color="primary">
+      <button mat-raised-button (click)="onBookingClick()" color="primary">
         Add Booking
       </button>
     </td>

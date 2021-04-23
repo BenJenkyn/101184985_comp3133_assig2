@@ -24,6 +24,10 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { SignUpComponent } from './sign-up/sign-up.component';
 import { AuthService } from './services/auth.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MakeBookingComponent } from './make-booking/make-booking.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,7 @@ import { AuthService } from './services/auth.service';
     HotelsComponent,
     BookingsComponent,
     SignUpComponent,
+    MakeBookingComponent,
   ],
   imports: [
     BrowserModule,
@@ -52,6 +57,9 @@ import { AuthService } from './services/auth.service';
     MatToolbarModule,
     MatSidenavModule,
     MatListModule,
+    MatDialogModule,
+    MatDatepickerModule,
+    MatNativeDateModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

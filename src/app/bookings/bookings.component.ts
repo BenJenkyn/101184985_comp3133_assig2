@@ -15,6 +15,14 @@ const q = gql`
   }
 `;
 
+const getHotelNameQuerey = gql`
+  query GetHotelNameById($hotel_id: String!) {
+    getHotelNameById(hotel_id: $hotel_id) {
+      hotel_name
+    }
+  }
+`;
+
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
@@ -23,7 +31,7 @@ const q = gql`
 export class BookingsComponent implements OnInit {
   bookings: any[] = [];
   loading = true;
-  user: any
+  user: any;
 
   dataSource = new MatTableDataSource(this.bookings);
 
@@ -31,23 +39,23 @@ export class BookingsComponent implements OnInit {
     'hotel_name',
     'booking_date',
     'booking_start',
-    'booking_end'
+    'booking_end',
   ];
   constructor(private apollo: Apollo) {}
 
   ngOnInit(): void {
-    const userId = localStorage.getItem('user_id')
-    console.log("user id: " + userId)
+    const userId = localStorage.getItem('user_id');
+    console.log('user id: ' + userId);
 
     this.apollo
       .query<any>({
         query: q,
         variables: {
-          user_id: userId
+          user_id: userId,
         },
       })
       .subscribe(({ data }) => {
-        this.bookings = data.getBookings
+        this.bookings = data.getBookings;
       });
   }
 
