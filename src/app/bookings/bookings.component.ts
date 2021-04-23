@@ -3,6 +3,18 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Apollo } from 'apollo-angular';
 import gql from 'graphql-tag';
 
+const q = gql`
+  query GetBookings($user_id: String!) {
+    getBookings(user_id: $user_id) {
+      hotel_id
+      booking_date
+      booking_start
+      booking_end
+      user_id
+    }
+  }
+`;
+
 @Component({
   selector: 'app-bookings',
   templateUrl: './bookings.component.html',
@@ -11,36 +23,31 @@ import gql from 'graphql-tag';
 export class BookingsComponent implements OnInit {
   bookings: any[] = [];
   loading = true;
+  user: any
 
-  dataSource = new MatTableDataSource(this.bookings)
+  dataSource = new MatTableDataSource(this.bookings);
 
   displayedColumns: string[] = [
-    'hotel_id',
+    'hotel_name',
     'booking_date',
     'booking_start',
-    'booking_end',
-    'user_id'
+    'booking_end'
   ];
   constructor(private apollo: Apollo) {}
 
   ngOnInit(): void {
+    const userId = localStorage.getItem('user_id')
+    console.log("user id: " + userId)
+
     this.apollo
       .query<any>({
-        query: gql`
-          {
-            getBookings {
-              hotel_id
-              booking_date
-              booking_start
-              booking_end
-              user_id
-            }
-          }
-        `,
+        query: q,
+        variables: {
+          user_id: userId
+        },
       })
-      .subscribe(({ data, loading }) => {
-        this.bookings = data && data.getBookings;
-        this.loading = loading;
+      .subscribe(({ data }) => {
+        this.bookings = data.getBookings
       });
   }
 

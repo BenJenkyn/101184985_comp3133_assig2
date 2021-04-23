@@ -18,7 +18,6 @@ export class HotelsComponent implements OnInit {
     'postal_code',
     'price',
     'email',
-    'user_id',
     'add_booking',
   ];
 
@@ -37,7 +36,6 @@ export class HotelsComponent implements OnInit {
               postal_code
               price
               email
-              user_id
             }
           }
         `,

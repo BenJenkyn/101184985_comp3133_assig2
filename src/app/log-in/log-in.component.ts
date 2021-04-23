@@ -23,7 +23,6 @@ const q = gql`
 export class LogInComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
-  getRoute = false;
   user: any;
 
   constructor(private apollo: Apollo, private authservice: AuthService, private router: Router) {}
@@ -46,8 +45,7 @@ export class LogInComponent implements OnInit {
       .subscribe(({ data }) => {
         this.user = data.getLogin
         if (this.user != null) {
-          this.getRoute = true
-          this.authservice.login(true);
+          this.authservice.login(true, this.user);
         }
       });
     //console.log('Form' + form.value);
