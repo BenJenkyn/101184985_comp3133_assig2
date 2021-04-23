@@ -22,6 +22,8 @@ export class AuthService {
   logout() {
     this.isLoggedIn = false;
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('username');
+    localStorage.removeItem('user_id');
   }
 
   isValid(): boolean {

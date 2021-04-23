@@ -34,7 +34,7 @@ export class DashboardComponent implements OnInit {
       //For bookings
       case 1:
         this.sideList = 1;
-        this.title = "Bookings"
+        this.title = "My Bookings"
         break;
       case 2:
         this.sideList = 2;

@@ -1,18 +1,20 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <h1>{{title}}</h1>
+    <h1>{{ title }}</h1>
     <span class="spacer"></span>
-    <button mat-button (click)="onLogout()">
-      Logout
-    </button>
+    <button mat-button (click)="onLogout()">Logout</button>
   </mat-toolbar-row>
 </mat-toolbar>
 <mat-sidenav-container class="full-sidenav">
   <mat-sidenav mode="side" opened class="left-sidenav">
     <mat-sidenav-container class="sidenav-component">
       <mat-list>
-        <mat-list-item (click)="onClick(0)"> Hotels </mat-list-item>
-        <mat-list-item (click)="onClick(1)"> My Bookings </mat-list-item>
+        <a (click)="onClick(0)">
+          <mat-list-item> Hotels </mat-list-item>
+        </a>
+        <a (click)="onClick(1)">
+          <mat-list-item> My Bookings </mat-list-item>
+        </a>
       </mat-list>
     </mat-sidenav-container>
   </mat-sidenav>
