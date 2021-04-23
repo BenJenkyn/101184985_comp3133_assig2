@@ -45,9 +45,9 @@ export class LogInComponent implements OnInit {
       })
       .subscribe(({ data }) => {
         // this.user = data && data.getLogin;
-        console.log(data)
+        console.log("data" + data)
       });
-    console.log(form.value)
+    console.log("Form" + form.value)
   }
 
   getErrorMessage() {

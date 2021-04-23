@@ -2,12 +2,12 @@
   <mat-card class="login-box">
     <!--The header-->
     <mat-card-title>SIGN UP</mat-card-title>
-    <br>
+    <br />
     <mat-divider></mat-divider>
-    <br>
+    <br />
 
     <!--The text fields-->
-    <form #loginForm="ngForm">
+    <form #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm)">
       <!--Email-->
       <mat-card-content>
         <mat-form-field class="sign-in-text-box" appearance="fill">
@@ -15,7 +15,8 @@
           <input
             matInput
             placeholder="example@email.com"
-            [formControl]="email"
+            ngModel
+            name="emailInput"
             required
           />
           <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
@@ -25,17 +26,20 @@
       <mat-card-content>
         <mat-form-field class="sign-in-text-box" appearance="fill">
           <mat-label>Enter a username</mat-label>
-          <input
-            matInput
-            required
-          />
+          <input matInput name="usernameInput" ngModel required />
         </mat-form-field>
       </mat-card-content>
       <!--Password-->
       <mat-card-content>
         <mat-form-field class="sign-in-text-box" appearance="fill">
           <mat-label>Enter your password</mat-label>
-          <input matInput required [type]="hide ? 'password' : 'text'" />
+          <input
+            matInput
+            name="passwordInput"
+            ngModel
+            required
+            [type]="hide ? 'password' : 'text'"
+          />
           <button
             mat-icon-button
             matSuffix
@@ -55,7 +59,7 @@
     </form>
     <mat-card-actions>
       <mat-card-footer>Have an account already?</mat-card-footer>
-      <br>
+      <br />
       <button mat-button [routerLink]="['/login']">Log-in</button>
     </mat-card-actions>
   </mat-card>
