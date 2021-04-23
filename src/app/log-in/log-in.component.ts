@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm, Validators } from '@angular/forms';
 import { Apollo } from 'apollo-angular';
+import { AuthService } from '../services/auth.service';
 import gql from 'graphql-tag';
+import { Router } from '@angular/router';
 
-const q = gql `
-query GetLogin($username: String!, $password: String!){
-    getLogin(username: $username, password: $password)
-    {
+const q = gql`
+  query GetLogin($username: String!, $password: String!) {
+    getLogin(username: $username, password: $password) {
       _id
       username
       email
@@ -22,32 +23,34 @@ query GetLogin($username: String!, $password: String!){
 export class LogInComponent implements OnInit {
   email = new FormControl('', [Validators.required, Validators.email]);
   hide = true;
-  user: any
+  getRoute = false;
+  user: any;
 
-  constructor(private apollo: Apollo) {}
+  constructor(private apollo: Apollo, private authservice: AuthService, private router: Router) {}
 
-  ngOnInit(): void {
+  ngOnInit(): void {}
 
-  }
+  onSubmit(form: NgForm) {
+    const unm = form.value.usernameInput;
+    const pwd = form.value.passwordInput;
 
-  onSubmit(form: NgForm){
-    const unm = form.value.usernameInput
-    const pwd = form.value.passwordInput
-
-    console.log(unm + " " + pwd)
+    //console.log(unm + ' ' + pwd);
     this.apollo
       .query<any>({
         query: q,
         variables: {
           username: unm,
-          password: pwd
-        }
+          password: pwd,
+        },
       })
       .subscribe(({ data }) => {
-        // this.user = data && data.getLogin;
-        console.log("data" + data)
+        this.user = data.getLogin
+        if (this.user != null) {
+          this.getRoute = true
+          this.authservice.login(true);
+        }
       });
-    console.log("Form" + form.value)
+    //console.log('Form' + form.value);
   }
 
   getErrorMessage() {

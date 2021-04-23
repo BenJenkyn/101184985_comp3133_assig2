@@ -7,5 +7,12 @@ import { Observable, throwError } from 'rxjs';
 export class AuthService {
 
   constructor() { }
+  isLoggedIn: boolean = false;
 
+  public login(isValid: boolean){
+    if(isValid){
+      this.isLoggedIn = true
+      localStorage.setItem('isLoggedIn', this.isLoggedIn ? "true" : "false")
+    }
+  }
 }

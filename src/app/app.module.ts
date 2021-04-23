@@ -23,6 +23,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { SignUpComponent } from './sign-up/sign-up.component';
+import { AuthService } from './services/auth.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,7 @@ import { SignUpComponent } from './sign-up/sign-up.component';
     MatSidenavModule,
     MatListModule,
   ],
-  providers: [HotelServiceService],
+  providers: [AuthService],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
