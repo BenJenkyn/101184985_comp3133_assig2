@@ -46,6 +46,7 @@ export class LogInComponent implements OnInit {
         this.user = data.getLogin
         if (this.user != null) {
           this.authservice.login(true, this.user);
+          this.router.navigate(['/dashboard']);
         }
       });
     //console.log('Form' + form.value);

@@ -2,21 +2,36 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
+  public user: any;
 
-  public user: any
-
-  constructor() { }
+  constructor() {}
   isLoggedIn: boolean = false;
 
-  public login(isValid: boolean, user: any){
-    if(isValid){
-      this.isLoggedIn = true
-      localStorage.setItem('user_id', user._id)
-      localStorage.setItem('username', user.username)
-      localStorage.setItem('isLoggedIn', this.isLoggedIn ? "true" : "false")
+  public login(isValid: boolean, user: any) {
+    if (isValid) {
+      this.isLoggedIn = true;
+      localStorage.setItem('user_id', user._id);
+      localStorage.setItem('username', user.username);
+      localStorage.setItem('isLoggedIn', this.isLoggedIn ? 'true' : 'false');
     }
+  }
+
+  logout() {
+    this.isLoggedIn = false;
+    localStorage.removeItem('isLoggedIn');
+  }
+
+  isValid(): boolean {
+    let data = localStorage.getItem('isLoggedIn');
+
+    if (data != null && data == 'true') {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+    return this.isLoggedIn;
   }
 }
